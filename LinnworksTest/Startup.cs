@@ -47,7 +47,6 @@ namespace LinnworksTest
             
             services.AddDbContext<CategoriesManagementContext>
                 (options => options.UseSqlServer(Configuration.GetConnectionString("LinnworksDatabase")));
-            
 
             services.AddScoped(typeof(IGenericRepository<>), typeof(GenericRepository<>));
             services.AddScoped<ITokenRepository, TokenRepository>();

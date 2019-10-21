@@ -51,13 +51,14 @@ namespace Linnworks.UnitTests.Controllers
             _sut = new AuthController(_mockRepository.Object) { ControllerContext = controllerContext };
         }
 
-        private void AssertIsBadRequestResultWithError(IActionResult result, string errorKey, string errorMessage)
+        [Test, TestCaseSource("InvalidAccountCases")]
+        public async Task Login_ShouldReturnBadRequest_WhenAccount_IsInvalid(Account invalidAccount)
         {
+            // .Act
+            var result = await _sut.Login(invalidAccount);
+
+            // .Assert
             Assert.IsInstanceOf<BadRequestObjectResult>(result);
-            var errors = (result as BadRequestObjectResult).Value as SerializableError;
-            Assert.IsNotNull(errors);
-            Assert.IsTrue(errors.ContainsKey(errorKey));
-            CollectionAssert.AreEqual(new string[] { errorMessage }, errors[errorKey] as string[]);
         }
 
         [Test, TestCaseSource("InvalidAccountCases")]
@@ -67,11 +68,25 @@ namespace Linnworks.UnitTests.Controllers
             var result = await _sut.Login(invalidAccount);
 
             // .Assert
-            AssertIsBadRequestResultWithError(result, "login_failure", "Invalid token.");
             _authServiceMock.Verify(x => x.SignInAsync(It.IsAny<HttpContext>(),
-                It.IsAny<string>(), 
+                It.IsAny<string>(),
                 It.IsAny<ClaimsPrincipal>(),
                 It.IsAny<AuthenticationProperties>()), Times.Never);
+        }
+
+        [Test]
+        public async Task Login_ShouldReturnBadRequest_WhenAccount_DoesNotExist()
+        {
+            // .Arrange
+            _mockRepository.Setup(r => r.IsValidTokenAsync(It.IsAny<Guid>()))
+                .Returns(Task.FromResult(false));
+            var notExistingAccount = new Account() { Token = Guid.NewGuid().ToString() };
+
+            // .Act
+            var result = await _sut.Login(notExistingAccount);
+
+            // .Assert
+            Assert.IsInstanceOf<BadRequestObjectResult>(result);
         }
 
         [Test]
@@ -86,11 +101,25 @@ namespace Linnworks.UnitTests.Controllers
             var result = await _sut.Login(notExistingAccount);
 
             // .Assert
-            AssertIsBadRequestResultWithError(result, "login_failure", "Invalid token.");
             _authServiceMock.Verify(x => x.SignInAsync(It.IsAny<HttpContext>(),
                 It.IsAny<string>(),
                 It.IsAny<ClaimsPrincipal>(),
                 It.IsAny<AuthenticationProperties>()), Times.Never);
+        }
+
+        [Test]
+        public async Task Login_ShouldReturnOkResult_WhenAccount_Exists()
+        {
+            // .Arrange
+            _mockRepository.Setup(r => r.IsValidTokenAsync(It.IsAny<Guid>()))
+                .Returns(Task.FromResult(true));
+            var existingAccount = new Account() { Token = Guid.NewGuid().ToString() };
+            // .Act
+            var result = await _sut.Login(existingAccount);
+
+            // .Assert
+            Assert.IsInstanceOf<OkObjectResult>(result);
+            Assert.AreEqual(existingAccount.Token, (result as OkObjectResult).Value);
         }
 
         [Test]
@@ -104,8 +133,6 @@ namespace Linnworks.UnitTests.Controllers
             var result = await _sut.Login(existingAccount);
 
             // .Assert
-            Assert.IsInstanceOf<OkObjectResult>(result);
-            Assert.AreEqual(existingAccount.Token, (result as OkObjectResult).Value);
             _authServiceMock.Verify(x => x.SignInAsync(It.IsAny<HttpContext>(),
                 It.IsAny<string>(),
                 It.Is<ClaimsPrincipal>(cp => cp.Claims.Any(c => c.Value == existingAccount.Token)),
