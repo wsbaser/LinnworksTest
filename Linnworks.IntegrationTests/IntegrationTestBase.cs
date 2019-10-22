@@ -6,7 +6,7 @@ namespace Linnworks.IntegrationTests
 {
     public class IntegrationTestBase
     {
-        protected static CategoriesManagementContext GivenLinnworksIntegrationContext(bool beginTransaction = true)
+        protected static CategoriesManagementContext GetLinnworksIntegrationContext()
         {
             var context = new CategoriesManagementContext(new DbContextOptionsBuilder<CategoriesManagementContext>()
                 .UseSqlServer(LinnworksIntegration.ConnectionString).Options);

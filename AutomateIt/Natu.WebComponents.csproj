@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\NUnit.3.11.0\build\NUnit.props" Condition="Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>automateit</RootNamespace>
+    <AssemblyName>automateit</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>true</UseVSHostingProcess>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <LangVersion>7.3</LangVersion>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ActiveUp.Net.Common">
+      <HintPath>..\packages\MailSystem.NET.2.0.1\lib\ActiveUp.Net.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="ActiveUp.Net.Imap4">
+      <HintPath>..\packages\MailSystem.NET.2.0.1\lib\ActiveUp.Net.Imap4.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.QualityTools.UnitTestFramework, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
+    <Reference Include="Newtonsoft.Json, Version=11.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog, Version=4.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\packages\NLog.4.4.11\lib\net45\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.framework, Version=3.11.0.0, Culture=neutral, PublicKeyToken=2638cd05610744eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\NUnit.3.11.0\lib\net45\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportPortal.Client, Version=2.1.12.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportPortal.Client.2.1.12\lib\net45\ReportPortal.Client.dll</HintPath>
+    </Reference>
+    <Reference Include="ReportPortal.Shared, Version=2.1.5.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ReportPortal.Shared.2.1.5\lib\net45\ReportPortal.Shared.dll</HintPath>
+    </Reference>
+    <Reference Include="RestSharp, Version=106.6.9.0, Culture=neutral, PublicKeyToken=598062e77f915f75, processorArchitecture=MSIL">
+      <HintPath>..\packages\RestSharp.106.6.9\lib\net452\RestSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="WebDriver, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.141.0\lib\net45\WebDriver.dll</HintPath>
+    </Reference>
+    <Reference Include="WebDriver.Support, Version=3.141.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.Support.3.141.0\lib\net45\WebDriver.Support.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Auxiliary\GMailClient.cs" />
+    <Compile Include="Auxiliary\MailAccounts.cs" />
+    <Compile Include="Auxiliary\MailClient.cs" />
+    <Compile Include="Auxiliary\MailHelper.cs" />
+    <Compile Include="Class1.cs" />
+    <Compile Include="Configs\Enums\AuthType.cs" />
+    <Compile Include="Configs\Load.cs" />
+    <Compile Include="Configs\Models\GenericAccount.cs" />
+    <Compile Include="Configs\Models\ServerConfig.cs" />
+    <Compile Include="Configs\Models\ServiceConfig.cs" />
+    <Compile Include="Configs\ProvidePath.cs" />
+    <Compile Include="Exceptions\NoVisibleElements.cs" />
+    <Compile Include="Framework\Browser\Browser.cs" />
+    <Compile Include="Framework\Browser\BrowserAction.cs" />
+    <Compile Include="Framework\Browser\BrowserAlert.cs" />
+    <Compile Include="Framework\Browser\BrowserCookies.cs" />
+    <Compile Include="Framework\Browser\BrowserFind.cs" />
+    <Compile Include="Framework\Browser\BrowserGet.cs" />
+    <Compile Include="Framework\Browser\BrowserGo.cs" />
+    <Compile Include="Framework\Browser\BrowserIs.cs" />
+    <Compile Include="Framework\Browser\BrowserJs.cs" />
+    <Compile Include="Framework\Browser\BrowsersCache.cs" />
+    <Compile Include="Framework\Browser\BrowserState.cs" />
+    <Compile Include="Framework\Browser\BrowserType.cs" />
+    <Compile Include="Framework\Browser\BrowserWait.cs" />
+    <Compile Include="Framework\Browser\BrowserWindow.cs" />
+    <Compile Include="Framework\Browser\ChromeDriverFacrory.cs" />
+    <Compile Include="Framework\Browser\DriverFacade.cs" />
+    <Compile Include="Framework\Browser\DriverManager.cs" />
+    <Compile Include="Framework\Browser\ECssProperty.cs" />
+    <Compile Include="Framework\Browser\FirefoxDriverManager.cs" />
+    <Compile Include="Framework\PageElements\WaitType.cs" />
+    <Compile Include="Framework\PageElements\ContainerBase.cs" />
+    <Compile Include="Framework\PageElements\DropListBase.cs" />
+    <Compile Include="Framework\PageElements\FindsByAttribute.cs" />
+    <Compile Include="Framework\PageElements\IComponentAttribute.cs" />
+    <Compile Include="Framework\PageElements\ISetValue.cs" />
+    <Compile Include="Framework\PageElements\ItemBase.cs" />
+    <Compile Include="Framework\PageElements\ListBase.cs" />
+    <Compile Include="Framework\PageElements\SimpleWebComponentAttribute.cs" />
+    <Compile Include="Framework\PageElements\Table2\HedaerRowWithCheckbox.cs" />
+    <Compile Include="Framework\PageElements\Table2\IWebRowBase.cs" />
+    <Compile Include="Framework\PageElements\Table2\OneTypeBodyRow.cs" />
+    <Compile Include="Framework\PageElements\Table2\TextTypeHeaderRow.cs" />
+    <Compile Include="Framework\PageElements\Table2\OneTypeWebBodyRowBase.cs" />
+    <Compile Include="Framework\PageElements\Table2\OneTypeWebRow.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebBody.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebHeader.cs" />
+    <Compile Include="Framework\PageElements\Table2\OneTypeWebHeaderRowBase.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebRowBase.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebRows.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebTable2.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebTableBase.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebTableIndexed.cs" />
+    <Compile Include="Framework\PageElements\Table2\WebTableWithIdBase.cs" />
+    <Compile Include="Framework\PageElements\Table\Body.cs" />
+    <Compile Include="Framework\PageElements\Table\Cell.cs" />
+    <Compile Include="Framework\PageElements\Table\Cells.cs" />
+    <Compile Include="Framework\PageElements\Table\Column.cs" />
+    <Compile Include="Framework\PageElements\Table\Columns.cs" />
+    <Compile Include="Framework\PageElements\Table\Header.cs" />
+    <Compile Include="Framework\PageElements\Table\Row.cs" />
+    <Compile Include="Framework\PageElements\Table\Rows.cs" />
+    <Compile Include="Framework\PageElements\Table\SimpleTable.cs" />
+    <Compile Include="Framework\PageElements\Table\WebTable.cs" />
+    <Compile Include="Framework\PageElements\WebAccordionBase.cs" />
+    <Compile Include="Framework\PageElements\WebDropdown.cs" />
+    <Compile Include="Framework\PageElements\WebiFrame.cs" />
+    <Compile Include="Framework\PageElements\WebList.cs" />
+    <Compile Include="Framework\PageElements\WebListItem.cs" />
+    <Compile Include="Framework\PageElements\WebSelect.cs" />
+    <Compile Include="Framework\PageElements\WebTabs.cs" />
+    <Compile Include="Framework\PageElements\WebCheckbox.cs" />
+    <Compile Include="Framework\PageElements\WebComponentAttribute.cs" />
+    <Compile Include="Framework\PageElements\IClickable.cs" />
+    <Compile Include="Framework\PageElements\WebButton.cs" />
+    <Compile Include="Framework\PageElements\WebImage.cs" />
+    <Compile Include="Framework\PageElements\WebInput.cs" />
+    <Compile Include="Framework\PageElements\WebLink.cs" />
+    <Compile Include="Framework\PageElements\WebLoaderArgsAttribute.cs" />
+    <Compile Include="Framework\PageElements\SimpleWebComponent.cs" />
+    <Compile Include="Framework\PageElements\WebRadioButton.cs" />
+    <Compile Include="Framework\PageElements\WebText.cs" />
+    <Compile Include="Framework\PageElements\WebToggleButton.cs" />
+    <Compile Include="Framework\Page\AlertBase.cs" />
+    <Compile Include="Framework\Page\ComponentBase.cs" />
+    <Compile Include="Framework\Page\EmailPageBase.cs" />
+    <Compile Include="Framework\Page\IComponent.cs" />
+    <Compile Include="Framework\Page\IExpandable.cs" />
+    <Compile Include="Framework\Page\IGetValue.cs" />
+    <Compile Include="Framework\Page\IHtmlAlert.cs" />
+    <Compile Include="Framework\Page\IItem.cs" />
+    <Compile Include="Framework\Page\IOverlay.cs" />
+    <Compile Include="Framework\Page\ISaveable.cs" />
+    <Compile Include="Framework\Page\ISelectable.cs" />
+    <Compile Include="Framework\Page\IWebList.cs" />
+    <Compile Include="Framework\Page\IProgressBar.cs" />
+    <Compile Include="Framework\Page\MvcPage.cs" />
+    <Compile Include="Framework\Page\IPage.cs" />
+    <Compile Include="Framework\Page\IPageObject.cs" />
+    <Compile Include="Framework\Page\PageBase.cs" />
+    <Compile Include="Framework\Page\WebPageBuilder.cs" />
+    <Compile Include="Framework\Page\SelfMatchingPageBase.cs" />
+    <Compile Include="Framework\Page\UriAssembler.cs" />
+    <Compile Include="Framework\Page\UriMatcher.cs" />
+    <Compile Include="Framework\Page\UriMatchResult.cs" />
+    <Compile Include="Framework\Service\BaseUrlInfo.cs" />
+    <Compile Include="Framework\Service\BaseUrlMatchLevel.cs" />
+    <Compile Include="Framework\Service\BaseUrlMatchResult.cs" />
+    <Compile Include="Framework\Service\BaseUrlPattern.cs" />
+    <Compile Include="Framework\Service\BaseUrlRegexBuilder.cs" />
+    <Compile Include="Framework\Service\SelfMatchingPagesRouter.cs" />
+    <Compile Include="Framework\Service\PageNotRegisteredException.cs" />
+    <Compile Include="Framework\Service\RequestAction.cs" />
+    <Compile Include="Framework\Service\RequestData.cs" />
+    <Compile Include="Framework\Service\Router.cs" />
+    <Compile Include="Framework\Service\RouterBase.cs" />
+    <Compile Include="Framework\Service\RouterInitializationException.cs" />
+    <Compile Include="Framework\Service\Service.cs" />
+    <Compile Include="Framework\Service\ServiceFactory.cs" />
+    <Compile Include="Framework\Service\ServiceBase.cs" />
+    <Compile Include="Framework\Service\ServiceMatchResult.cs" />
+    <Compile Include="Framework\Service\Web.cs" />
+    <Compile Include="ISeleniumContext.cs" />
+    <Compile Include="Logging\ITestLogger.cs" />
+    <Compile Include="Logging\TestLogger.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SCSS\AttributeMatchStyle.cs" />
+    <Compile Include="SCSS\InvalidScssException.cs" />
+    <Compile Include="SCSS\Scss.cs" />
+    <Compile Include="SCSS\ScssAttribute.cs" />
+    <Compile Include="SCSS\SCSSBuilder.cs" />
+    <Compile Include="SCSS\Selector.cs" />
+    <Compile Include="SeleniumContext.cs" />
+    <Compile Include="TestData\RandomDataHelper.cs" />
+    <Compile Include="Tests\TestBase.cs" />
+    <Compile Include="Tests\TestHelper.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\AutomateIt.Utils\Natu.Utils.csproj">
+      <Project>{f04b3cf0-797a-4515-ba27-79787abc66b5}</Project>
+      <Name>Natu.Utils</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{82A7F48D-3B50-4B1E-B82E-3ADA8210C358}" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(SolutionDir)\.nuget\nuget.targets" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\ReportPortal.Client.2.1.12\build\ReportPortal.Client.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ReportPortal.Client.2.1.12\build\ReportPortal.Client.targets'))" />
+    <Error Condition="!Exists('..\packages\ReportPortal.Shared.2.1.5\build\ReportPortal.Shared.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\ReportPortal.Shared.2.1.5\build\ReportPortal.Shared.targets'))" />
+    <Error Condition="!Exists('..\packages\NUnit.3.11.0\build\NUnit.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\NUnit.3.11.0\build\NUnit.props'))" />
+  </Target>
+  <Import Project="..\packages\ReportPortal.Client.2.1.12\build\ReportPortal.Client.targets" Condition="Exists('..\packages\ReportPortal.Client.2.1.12\build\ReportPortal.Client.targets')" />
+  <Import Project="..\packages\ReportPortal.Shared.2.1.5\build\ReportPortal.Shared.targets" Condition="Exists('..\packages\ReportPortal.Shared.2.1.5\build\ReportPortal.Shared.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

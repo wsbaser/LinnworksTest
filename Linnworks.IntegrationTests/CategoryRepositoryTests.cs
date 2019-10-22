@@ -15,7 +15,7 @@ namespace Linnworks.IntegrationTests
             Category category = new Category() { CategoryName = Guid.NewGuid().ToString() };
 
             // .Act
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
                 category = await sut.CreateAsync(category);
@@ -31,7 +31,7 @@ namespace Linnworks.IntegrationTests
         {
             // .Arrange
             Category category = new Category() { CategoryName = "DUPLICATED" };
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 await context.AddAsync(category);
                 await context.SaveChangesAsync();
@@ -39,7 +39,7 @@ namespace Linnworks.IntegrationTests
             var duplicatedCatgory = new Category() { CategoryName = category.CategoryName };
 
             // .Assert
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
                 Assert.ThrowsAsync<Exception>(async () =>
@@ -53,7 +53,7 @@ namespace Linnworks.IntegrationTests
         {
             // .Arrange
             Category categoryToUpdate = new Category() { CategoryName = Guid.NewGuid().ToString() };
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 await context.AddAsync(categoryToUpdate);
                 await context.SaveChangesAsync();
@@ -61,13 +61,13 @@ namespace Linnworks.IntegrationTests
             var updatedCategory = new Category() { CategoryName = Guid.NewGuid().ToString() };
 
             // .Act
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
                 await sut.UpdateAsync(categoryToUpdate.Id, updatedCategory);
             }
             // .Assert
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 Assert.AreEqual(updatedCategory.CategoryName, context.Find<Category>(categoryToUpdate.Id).CategoryName);
             }
@@ -80,7 +80,7 @@ namespace Linnworks.IntegrationTests
             const string duplicatedName = "DUPLICATED";
             Category category = new Category() { CategoryName = duplicatedName };
             Category categoryToUpdate = new Category() { CategoryName = "UPDATE TO DUPLICATED" };
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 await context.AddAsync(category);
                 await context.AddAsync(categoryToUpdate);
@@ -88,13 +88,13 @@ namespace Linnworks.IntegrationTests
             }
 
             // .Assert
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
                 var updatedCategory = new Category() { CategoryName = duplicatedName };
-                Assert.That(async () =>
+                Assert.ThrowsAsync<Exception>(async () =>
                     // .Act
-                    await sut.UpdateAsync(categoryToUpdate.Id, updatedCategory), Throws.Exception);
+                    await sut.UpdateAsync(categoryToUpdate.Id, updatedCategory));
             }
         }
 
@@ -102,12 +102,12 @@ namespace Linnworks.IntegrationTests
         public async Task Update_NotExistingCategory_ShouldThrowException()
         {
             // .Assert
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
-                Assert.That(async () =>
-                // .Act
-                await sut.UpdateAsync(Guid.NewGuid(), new Category() { CategoryName = Guid.NewGuid().ToString() }), Throws.Exception);
+                Assert.ThrowsAsync<Exception>(async () =>
+                    // .Act
+                    await sut.UpdateAsync(Guid.NewGuid(), new Category() { CategoryName = Guid.NewGuid().ToString() }));
             }
         }
 
@@ -116,7 +116,7 @@ namespace Linnworks.IntegrationTests
         {
             // .Arrange
             Category category = new Category() { CategoryName = Guid.NewGuid().ToString() };
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 await context.AddAsync(category);
                 await context.SaveChangesAsync();
@@ -125,13 +125,13 @@ namespace Linnworks.IntegrationTests
             }
 
             // .Act
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
                 await sut.DeleteAsync(category.Id);
             }
             // .Assert
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 Assert.IsNull(context.Find<Category>(category.Id));
             }
@@ -141,14 +141,12 @@ namespace Linnworks.IntegrationTests
         public async Task Delete_NotExistingCategory_ShouldThrowException()
         {
             // .Assert
-            using (var context = GivenLinnworksIntegrationContext())
+            using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
-                Assert.That(async () =>
-                {
+                Assert.ThrowsAsync<Exception>(async () =>
                     // .Act
-                    await sut.DeleteAsync(Guid.NewGuid());
-                }, Throws.Exception);
+                    await sut.DeleteAsync(Guid.NewGuid()));
             }
         }
     }

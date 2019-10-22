@@ -1,0 +1,43 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.28803.352
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "NATU", "NATU", "{B01DD4BD-94F6-40C0-8204-D47B998DDA5C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natu.WebComponents", "AutomateIt\Natu.WebComponents.csproj", "{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Natu.Utils", "AutomateIt.Utils\Natu.Utils.csproj", "{F04B3CF0-797A-4515-BA27-79787ABC66B5}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LinnworksTest.Features", "km.features\LinnworksTest.Features.csproj", "{B75292D3-850E-4DC0-84FC-6D0CE5ADE65C}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F04B3CF0-797A-4515-BA27-79787ABC66B5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F04B3CF0-797A-4515-BA27-79787ABC66B5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F04B3CF0-797A-4515-BA27-79787ABC66B5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F04B3CF0-797A-4515-BA27-79787ABC66B5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B75292D3-850E-4DC0-84FC-6D0CE5ADE65C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B75292D3-850E-4DC0-84FC-6D0CE5ADE65C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B75292D3-850E-4DC0-84FC-6D0CE5ADE65C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B75292D3-850E-4DC0-84FC-6D0CE5ADE65C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{0B0FB4E5-F25E-49F1-8A19-A684AAD5A671} = {B01DD4BD-94F6-40C0-8204-D47B998DDA5C}
+		{F04B3CF0-797A-4515-BA27-79787ABC66B5} = {B01DD4BD-94F6-40C0-8204-D47B998DDA5C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E9D06826-C5DA-4751-91E6-1AA2D23961DD}
+	EndGlobalSection
+EndGlobal
