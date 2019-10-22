@@ -31,7 +31,7 @@ namespace Linnworks.IntegrationTests
                 ON (NAME = 'Linnworks.IntegrationTests',
                 FILENAME = '{Filename}')");
 
-            using (var context = GivenLinnworksIntegrationContext(beginTransaction: false))
+            using (var context = GetLinnworksIntegrationContext())
             {
                 context.Database.Migrate();
                 // context.Seed();

@@ -42,9 +42,9 @@ namespace Linnworks.IntegrationTests
             using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
-                Assert.ThrowsAsync<Exception>(async () =>
+                Assert.That(async () =>
                     // .Act
-                    await sut.CreateAsync(duplicatedCatgory));
+                    await sut.CreateAsync(duplicatedCatgory), Throws.Exception);
             }
         }
 
@@ -92,9 +92,9 @@ namespace Linnworks.IntegrationTests
             {
                 var sut = new GenericRepository<Category>(context);
                 var updatedCategory = new Category() { CategoryName = duplicatedName };
-                Assert.ThrowsAsync<Exception>(async () =>
+                Assert.That(async () =>
                     // .Act
-                    await sut.UpdateAsync(categoryToUpdate.Id, updatedCategory));
+                    await sut.UpdateAsync(categoryToUpdate.Id, updatedCategory), Throws.Exception);
             }
         }
 
@@ -105,9 +105,9 @@ namespace Linnworks.IntegrationTests
             using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
-                Assert.ThrowsAsync<Exception>(async () =>
+                Assert.That(async () =>
                     // .Act
-                    await sut.UpdateAsync(Guid.NewGuid(), new Category() { CategoryName = Guid.NewGuid().ToString() }));
+                    await sut.UpdateAsync(Guid.NewGuid(), new Category() { CategoryName = Guid.NewGuid().ToString() }), Throws.Exception);
             }
         }
 
@@ -144,9 +144,9 @@ namespace Linnworks.IntegrationTests
             using (var context = GetLinnworksIntegrationContext())
             {
                 var sut = new GenericRepository<Category>(context);
-                Assert.ThrowsAsync<Exception>(async () =>
+                Assert.That(async () =>
                     // .Act
-                    await sut.DeleteAsync(Guid.NewGuid()));
+                    await sut.DeleteAsync(Guid.NewGuid()), Throws.Exception);
             }
         }
     }

@@ -84,7 +84,7 @@ describe('Component: Add Category (Create)', () => {
     expect(component.categoryForm.controls['categoryName'].value).toEqual(initialCategory.categoryName);
   });
 
-  it('should not trigger saving category when form is invalid', () => {
+  it('submit should not trigger saving category when form is invalid', () => {
     // .Arrange
     setInvalidCategory();
     // .Act
